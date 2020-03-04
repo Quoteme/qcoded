@@ -1,0 +1,11 @@
+-read me-
+the game "rocket" was made by luca happel, if you wanna publish it yourself, make sure you leave my name in the credits, or the url to game.qcoded.de, please.
+the game is currently on version 0.1.2, keep in mind, that there could be much bugs, and crashes, which yould be patches in the next version, so keep looking for updates on my website (url were sayed).
+The files "backup(number).js" are backups, and can be deleted, if you do not wan't to use them as the basic for your own game.
+The file "failes.js" is a javascript file, with a bug not patched, you can use it as a basic, if you finde the bug.
+the file "game.js" is the one, which will be loaded, do not delet it.
+the file "index.htm" is the file which loads everything, you may be familyar with that ^^.
+there are tons of bugs, so do not judge me, if you do not update!
+
+all files are opensorce, and will not be copyrighted.
+hope you enjoy it...

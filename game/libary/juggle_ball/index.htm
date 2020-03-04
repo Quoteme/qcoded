@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Juggle_ball</title>
+</head>
+<body>
+<button onclick='start_loop()'>starten</button>
+<span id='x'></span> X <span id='y'></span> Y
+<div id='game_object' style='position: relative'>
+<canvas width='800px' height='600px' id='background_canvas' style='background: white; position: absolute; top: 0px; left: 0px;'></canvas>
+<canvas width='800px' height='600px' id='main_canvas' style='position: absolute; top: 0px; left: 0px;' onmousemove='mouse(event)'>Leider kann dieser Browser das Spiel nicht ausfhren!</canvas>
+</div>
+<script type="text/javascript" src='game.js'></script>
+</body>
+</html>

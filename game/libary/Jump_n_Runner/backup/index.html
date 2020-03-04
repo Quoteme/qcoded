@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Jump n runner - First Phaser Test</title>
+	<link rel="shortcut icon" type="image/png" href="icon.png"/>
+	<!--
+	<script type="text/javascript" src="http://code.createjs.com/easeljs-0.8.0.min.js"></script>
+	<script src="http://code.createjs.com/tweenjs-0.6.0.min.js"></script>
+	-->
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+			background-color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+canvas_x = 800;
+canvas_y = 600;
+
+var game = new Phaser.Game(canvas_x, canvas_y, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+levelprompt = getUrlVars()["lp"];
+player_speed		= 200;
+player_jump_height	= 270;
+player_gravity		= 500;
+tile_size			= 32;
+use_windmill 		= false;
+use_title 			= false;
+default_bottom		= true;
+max_title_angle		= 5;
+title_angle_back 	= false
+function preload() {
+	game.load.image('sky', 'assets/bg0.png');
+	game.load.image('ground', 'assets/platform.png');
+	game.load.image('ground_2', 'assets/platform_2.png');
+	game.load.image('ground_broken', 'assets/platform_broken.png');
+	game.load.image('bottom', 'assets/ground.png');
+	game.load.image('ladder', 'assets/ladder.png');
+	game.load.image('flag_red', 'assets/flag_red.png');
+	game.load.image('door', 'assets/door.png');
+	game.load.image('tree', 'assets/tree.png');
+	game.load.image('tree_spruce', 'assets/tree_2.png');
+	game.load.image('bridge', 'assets/bridge.png');
+	game.load.image('waterfall', 'assets/waterfall.png')
+	game.load.image('grass', 'assets/grass.png');
+	game.load.image('sign', 'assets/sign.png');
+	game.load.image('windmill', 'assets/windmill.png');
+	game.load.image('house', 'assets/house.png');
+	game.load.image('carrier', 'assets/carrier.png');
+	game.load.image('title', 'assets/title.png');
+	game.load.spritesheet('dude', 'assets/player.png', 20, 36);
+}
+
+function create() {
+	//create physics
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+
+	decoration			 = game.add.group();
+	platforms 			 = game.add.group();
+	flag_red 			 = game.add.group();
+	platforms.enableBody = true;
+	flag_red.enableBody	 = true;
+	decoration.enableBody= true;
+
+
+	//add background
+	sky = decoration.create(0, 0, 'sky');
+	sky.body.immovable = true;
+	sky.fixedToCamera = true;
+
+	if (levelprompt == undefined || levelprompt == '') {
+		levelprompt = 0;
+		game.world.setBounds(0, 0, canvas_x, canvas_y); // set world boundarys
+		level_complete = flag_red.create(game.world.width / 2 - tile_size / 2, game.world.height - tile_size * 2 - 4, 'flag_red');
+		level_complete.body.immovable = true;
+		tree = decoration.create(100, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		tree = decoration.create(120, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		tree = decoration.create(160, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		tree = decoration.create(250, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		move_text = game.add.text(50, game.world.height- tile_size * 5, 'Move using the arrow keys', {fill: '#000'}).angle = -6;
+		jump_text = game.add.text(250, game.world.height- tile_size * 5, 'and jump with "up"', {fill: '#000'}).angle = 1;
+		flag_red_text = game.add.text(450, game.world.height- tile_size * 7, 'Get to the red flag!', {fill: '#000'}).angle = -2;
+		ledge = platforms.create(600 - tile_size / 4, game.world.height - tile_size * 1.7, 'ground_2');
+		ledge.body.immovable = true;
+		tree = decoration.create(600, game.world.height - tile_size * 4.7, 'tree');
+		tree.body.immovable = true;
+		title = decoration.create(game.world.width / 2,100, 'title');
+		title.anchor.setTo(0.5, 0);
+		title.body.immovable = true;
+		define_player_loation = false; //default player location
+		use_title = true;
+	}else if (levelprompt == 1) {
+		//create map
+		game.world.setBounds(0, 0, canvas_x, canvas_y); // set world boundarys
+		var ledge = platforms.create(300, 500, 'ground');
+		ledge.body.immovable = true;
+		tree = decoration.create(500, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		tree = decoration.create(30, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		ledge = platforms.create(150, 450, 'ground_2');
+		ledge.body.immovable = true;
+		ledge = platforms.create(330, 420, 'ground_2');
+		ledge.body.immovable = true;
+		ledge = platforms.create(370, 390, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(500, 380, 'ground_broken');
+		ledge.body.immovable = false;
+		ledge = platforms.create(600, 350, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630, 330, 'ground'); //	wall to climbe on
+		ledge.body.immovable = true;
+		//ledge = platforms.create(630 - tile_size / 2, 315, 'ladder');
+		//ledge.body.immovable = true;
+		ledge = platforms.create(630, 300, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630 - tile_size / 2, 280, 'ladder');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630, 270, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630 - tile_size / 2, 245, 'ladder');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630, 240, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630 - tile_size / 2, 210, 'ladder');
+		ledge.body.immovable = true;
+		ledge = platforms.create(630, 210, 'ground');
+		ledge.body.immovable = true;
+		tree = decoration.create(620, 211 - tile_size * 3, 'tree');
+		tree.body.immovable = true;
+		ledge = platforms.create(660, 200, 'ground'); //	end of climbing wall
+		ledge.body.immovable = true;
+		waterfall = decoration.create(660, 230, 'waterfall');
+		waterfall.body.immovable = true;
+		for (var i = 0; i < 16; i++) {
+			bridge = decoration.create(600 - 30 * i, 220, 'bridge');
+			bridge.body.immovable = false;
+		}
+		ledge = platforms.create(600 - 30 * 16, 220, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(600 - 30 * 16 - 15, 195, 'ground');
+		ledge.body.immovable = true;
+		for (var i = 0; i < 10; i++) {
+			if (i % 2 == 0){
+				ledge = platforms.create(450 - 30 * i, 220, 'ground_broken');
+				ledge.body.immovable = false;
+			}
+		}
+		ledge = platforms.create(100, 170, 'ground_2');
+		ledge.body.immovable = true;
+		level_complete = flag_red.create(115, 135, 'flag_red');
+		level_complete.body.immovable = true;
+		retry_text = game.add.text(50, game.world.height / 2, 'reload the page\nto retry the level.', {fill: '#000'}).angle = -3;
+		define_player_loation = false; //default player location
+	} // end of level one
+	else if (levelprompt == 2) { // level two
+		game.world.setBounds(0, 0, canvas_x + 200, canvas_y); // set world boundarys
+		for (var i = 0; i < 6; i++) {
+			ledge = platforms.create(tile_size * 4, game.world.height - tile_size * i * 0.9, 'ground');
+			ledge.body.immovable = true;
+		}
+		for (var i = 0; i < 2; i++) {
+			ledge = platforms.create(tile_size * 4 - tile_size / 2, game.world.height - tile_size * i - tile_size * 3 - 8 * i, 'ladder');
+			ledge.body.immovable = true;
+		}
+		ledge = platforms.create(tile_size * 4.7, game.world.height - tile_size * 5, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(180, game.world.height - tile_size * 1.7, 'ground_2');
+		ledge.body.immovable = true;
+		ledge = platforms.create(190, game.world.height - tile_size * 2.5, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(190, game.world.height - tile_size * 2.8, 'ground');
+		ledge.body.immovable = true;
+		ledge = platforms.create(530, game.world.height - tile_size * 1.3, 'ground_2');
+		ledge.body.immovable = true;
+		for (var i = 0; i < 6; i++) {
+			if (i%2 == 0){
+				ledge = platforms.create(270 - 15*i, 432 + 34 * i, 'ground');
+				ledge.body.immovable = true;
+			}
+		}
+		for (var i = 0; i < 8; i++) {
+			ledge = decoration.create( 240, 530 + 30 * i, 'carrier');
+			ledge.body.immovable = true;
+		}
+		ledge = platforms.create(105, 360, 'ground_2');
+		ledge.body.immovable = true;
+		for (var i = 0; i < 13; i++) {
+			carrier = decoration.create(115, 390 + 30 * i, 'carrier');
+			carrier.body.immovable = true;
+		}
+		house = decoration.create(105, 360 - tile_size * 3, 'house');
+		house.body.immovable = true;
+		door = decoration.create(125, 360 - tile_size, 'door');
+		door.body.immovable = true;
+		windmill = decoration.create(105, 360 - tile_size * 3, 'windmill');
+		windmill.body.immovable = false;
+		for (var i = 0; i < 5; i++) {
+			ledge = decoration.create(165 + 30 * i, 360, 'bridge');
+			ledge.body.immovable = true;
+		}
+		waterfall = decoration.create(379, 360, 'waterfall');
+		waterfall.body.immovable = true;
+		waterfall = decoration.create(390, 372, 'waterfall');
+		waterfall.body.immovable = true;
+		waterfall = decoration.create(400, 350, 'waterfall');
+		waterfall.body.immovable = true;
+		grass = decoration.create(500, game.world.height - tile_size * 1.5, 'grass');
+		grass.body.immovable = true;
+		ledge = platforms.create(315, 360, 'ground_2');
+		ledge.body.immovable = true;
+		tree = decoration.create(320, 360 - tile_size * 3, 'tree');
+		tree.body.immovable = true;
+		ledge = platforms.create(355, 340, 'ground_2');
+		ledge.body.immovable = true;
+		grass = decoration.create(395, 373 - tile_size * 1.5, 'grass');
+		grass.body.immovable = true;
+		ledge = platforms.create(410, 355, 'ground');
+		ledge.body.immovable = true;
+		for (var i = 0; i < 14; i++) {
+			ledge = decoration.create(410 + 30 * i, 355, 'bridge');
+			ledge.body.immovable = true;
+		}
+		ledge = platforms.create(410 + 30 * 5, 355, 'ground_broken');
+		ledge.body.immovable = false;
+		ledge = platforms.create(710, 355, 'ground_2');
+		ledge.body.immovable = true;
+		for (var i = 0; i < 14; i++) {
+			ledge = decoration.create(710 + tile_size / 2, 355 + tile_size + 30 * i, 'carrier');
+			ledge.body.immovable = true;
+		}
+		ledge = platforms.create(830, 355, 'ground_2');
+		ledge.body.immovable = true;
+		ledge = platforms.create(640, tile_size * 5, 'ground_2');//deco platform
+		ledge.body.immovable = true;
+		ledge = platforms.create(600, tile_size * 5 - 20, 'ground_2');
+		ledge.body.immovable = true;
+		waterfall = decoration.create(620, tile_size * 5 , 'waterfall');
+		waterfall.body.immovable = true;
+		tree = decoration.create(650, tile_size * 2, 'tree');
+		tree.body.immovable = true;
+		grass = decoration.create(845, 380 - tile_size * 1.2, 'grass');
+		grass.body.immovable = true;
+		tree = decoration.create(855, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		tree = decoration.create(810, game.world.height - tile_size * 4, 'tree');
+		tree.body.immovable = true;
+		for (j = 0; j < 5; j++) {
+			for (i = 0; i < 9; i++) {
+				ledge = platforms.create(845 + i%2 * 10 + 15 * i + 25 * j, 380 + 20 * i - 25 * j, 'ground_2');
+				ledge.body.immovable = true;
+			}
+		}
+		house = decoration.create(945, 280 - tile_size * 3, 'house');
+		house.body.immovable = true;
+		door = decoration.create(975, 280 - tile_size, 'door');
+		door.body.immovable = true;
+		level_complete = flag_red.create(965, 280 - 36, 'flag_red');
+		level_complete.body.immovable = true;
+		share_text	= game.add.text(100, 100, 'share levels by copying the URL.', {fill: '#000'}).angle = -7;
+
+		//level building vars
+		use_windmill = true;
+		define_player_loation = false;//default player location
+	} // end of level two
+	else if (levelprompt == 3) { // level three
+		// set up level world
+			game.world.setBounds(0, 0, canvas_x, canvas_y + 100);
+			define_player_loation = true;
+				player_start_x		= 650;
+				player_start_y		= game.world.height - tile_size * 3;
+			use_windmill = true;
+			use_title = false;
+		// create level
+			for (var i = 0; i < 3; i++) {
+				for (var j = 0; j < 7 - i; j++) { // first mountain
+					ledge = platforms.create(0 + 25 * i, game.world.height - tile_size - tile_size - 25 * j, 'ground');//deco platform
+					ledge.body.immovable = true;
+				}
+			}
+			for (var i = 0; i < 3; i++) { // create ladder for first mountain
+				ledge = platforms.create(90 - tile_size / 2,  game.world.height - 2 * tile_size - tile_size * i - 3 * i, 'ladder');
+				ledge.body.immovable = true;
+			}
+			// ground dekoration
+			sign = decoration.create(600, game.world.height - tile_size * 2.5, 'sign');
+			sign.body.immovable = true;
+			for (var i = 0; i < 3; i++) { // create some hills
+				ledge = platforms.create( 300 + 50 * i,  game.world.height - tile_size - 10 * i, 'ground_2');
+				ledge.body.immovable = true;
+			}
+			for (var i = 0; i < 9; i++) { // create grass dekoration
+				if (i%3){
+					grass = decoration.create(200 + 55 * i, game.world.height - tile_size * 1.5, 'grass');
+					grass.body.immovable = true;
+				}
+			}
+			for (var i = 0; i < 16; i++) { // create bridge
+				ledge = decoration.create( 200 + 30 * i,  game.world.height - tile_size * 8.5, 'bridge');
+				ledge.body.immovable = true;
+			}
+			for (var i = 0; i < 6; i++) { // first platform
+				if ( i < 2) {
+					ledge = platforms.create( 130 + 5 * i,  game.world.height - tile_size * 8 + (tile_size * 0.6) * i, 'ground_2');
+					ledge.body.immovable = true;
+				}else{
+					ledge = platforms.create( 200 - 5 * i,  game.world.height - tile_size * 10 + (tile_size * 0.6) * i + 10, 'ground');
+					ledge.body.immovable = true;
+				}
+			}
+			// decorations for first platform
+				tree = decoration.create(130, game.world.height - tile_size * 11, 'tree_spruce');
+				tree.body.immovable = true;
+				waterfall = decoration.create(140, game.world.height - tile_size * 7, 'waterfall');
+				waterfall.body.immovable = true;
+
+			for (var i = 0; i < 4; i++) { // platform two
+				ledge = platforms.create( 480 - i%2 * 30, game.world.height - tile_size * 8.5 + (tile_size * 0.3) * i - (i + 1)%2 * (tile_size * 0.6), 'ground_2');
+				ledge.body.immovable = true;
+			}
+			//decorations of the seconde platform
+				tree = decoration.create(480, game.world.height - tile_size * 12, 'tree');
+				tree.body.immovable = true;
+			for (var j = 0; j < 5; j++) {
+				for (var i = 0; i < j + 4; i++) { // mountain
+					ledge = platforms.create( 650 + 15 * i + 30 * j, game.world.height - tile_size * 9 + 20 * i, 'ground');
+					ledge.body.immovable = true;
+				}
+			}
+			//decorations for mountain
+				for (var i = 0; i < 7; i++) { // iron carriers down
+					carrier = decoration.create(705, game.world.height - tile_size - tile_size * i, 'carrier');
+					carrier.body.immovable = true;
+				}
+				// iron carriers up
+				for (var i = 0; i < 2; i++) {
+					carrier = decoration.create(685, game.world.height - tile_size * 10.5 - tile_size * i, 'carrier');
+					carrier.body.immovable = true;
+				}
+				// waterfall next to iron carriers
+					waterfall = decoration.create(770, game.world.height - tile_size * 6, 'waterfall');
+					waterfall.body.immovable = true;
+				// create tree
+					tree = decoration.create(750, 418 - tile_size * 3.5, 'tree');
+					tree.body.immovable = true;
+				// create windmill
+					house = decoration.create(650 + tile_size * 2, 415 - tile_size * 3, 'house');
+					house.body.immovable = true;
+					door = decoration.create(670 + tile_size * 2, 415 - tile_size, 'door');
+					door.body.immovable = true;
+					windmill = decoration.create(650 + tile_size * 2, 415 - tile_size * 3, 'windmill');
+					windmill.body.immovable = false;
+				for (var i = 0; i < 2; i++) {// small hills on mountain
+					ledge = platforms.create( 650 + tile_size / 3 + (tile_size + 70) * i, game.world.height - tile_size * 9.5, 'ground_2');
+					ledge.body.immovable = true;
+				}
+				// iron carrier platform
+				for (var i = 0; i < 3; i++) {
+					ledge = platforms.create( 685 - 5 * i, game.world.height - tile_size * 11.8 - (tile_size-5) * i, 'ground');
+					ledge.body.immovable = true;
+				}
+				for (var i = 0; i < 16; i++) { // create bridge
+					ledge = decoration.create( 665 - 30 * i,  game.world.height - tile_size * 13, 'bridge');
+					ledge.body.immovable = true;
+				}
+				for (var i = 1; i < 2; i += 0.5) {
+					ledge = platforms.create( 665 - 30 * (7*i),  game.world.height - tile_size * 13, 'ground_broken');
+					ledge.body.immovable = false;
+				}
+				for (var i = 0; i < 2; i++) { // create last island
+					ledge = platforms.create( 155 - tile_size * i,  game.world.height - tile_size * 13 + (tile_size / 3) * i, 'ground_2');
+					ledge.body.immovable = true;
+				}
+				// last island decoration
+					ledge = platforms.create( 170,  game.world.height - tile_size * 12.1, 'ground');
+					ledge.body.immovable = true;
+					grass = decoration.create(190, game.world.height - tile_size * 13.5, 'grass');
+					grass.body.immovable = true;
+					level_complete = flag_red.create(140, game.world.height - tile_size * 13.75, 'flag_red');
+					level_complete.body.immovable = true;
+
+	} // end of level three
+	else if (levelprompt == 4) { // level four
+		game.world.setBounds(0, 0, canvas_x, canvas_y + 100);
+		define_player_loation = true;
+		player_start_x		= tile_size * 5;
+		player_start_y		= tile_size * 3;
+		use_windmill = false;
+		use_title = false;
+		default_bottom = false;
+		//create level
+		for (var i = 0; i < 3; i++) {
+			ledge = platforms.create( tile_size * 5,  tile_size * 4, 'ground');
+			ledge.body.immovable = true;
+		}
+	}
+	else
+	{
+		game.world.setBounds(0, 0, canvas_x, canvas_y); // set world boundarys
+		error_text = game.add.text(game.world.width / 2, game.world.height / 2, 'Level ' + levelprompt + ' is not released yet', {fill: '#000'}).anchor.setTo(0.5, 0.5);
+		define_player_loation = false;
+		use_windmill = false;
+		use_title = false;
+	}
+
+	//anchor rotating elements
+	if (use_windmill == undefined)
+		use_windmill = false;
+	if (use_windmill == true){
+	windmill.x += tile_size;
+	windmill.y += tile_size * 1.5;
+	windmill.anchor.setTo(0.5, 0.5);
+	}
+
+	if (default_bottom){
+		ground = platforms.create(0, game.world.height - tile_size, 'bottom');
+		ground.body.immovable = true;
+	}
+
+	if (define_player_loation != true){
+		player_start_x		= 32;
+		player_start_y		= game.world.height - tile_size * 3;
+	}
+
+
+	// add the player
+	player = game.add.sprite(player_start_x, player_start_y, 'dude');
+
+	//  We need to enable physics on the player
+	game.physics.arcade.enable(player);
+
+	//  Player physics properties. Give the little guy a slight bounce.
+	player.body.bounce.y = 0;
+	player.body.gravity.y = player_gravity;
+	player.body.collideWorldBounds = true;
+	//Phaser.Camera.atLimit = false;
+	game.camera.follow(player);
+
+	//  Our two animations, walking left and right.
+	player.animations.add('left', [0, 1, 2, 3], 10, true);
+	player.animations.add('right', [5, 6, 7, 8], 10, true);
+	player.animations.add('smack_down', [9], 10, true);
+
+	cursors = game.input.keyboard.createCursorKeys();
+}
+
+function update() {
+	//  checking for collision
+	game.physics.arcade.collide(player, platforms);
+	if (game.physics.arcade.collide(player, flag_red)){
+		next_level = levelprompt - 1 + 2;
+		temp_loc = location.href.replace('?lp=' + levelprompt, '');
+		location.href = temp_loc + '?lp=' + next_level;
+	}
+
+	//level specivic collision detecting
+		if (levelprompt == 4){
+			if (player.y > game.world.height - tile_size * 2){
+				player.x			= tile_size * 5;
+				player.y			= tile_size * 2;
+			}
+		}
+
+	// rotate spites
+	if (use_windmill == true)
+		windmill.angle += 1;
+	if (use_title == true){
+		if (title.angle >= max_title_angle)
+			title_angle_back = false;
+		if (title.angle <= -max_title_angle)
+			title_angle_back = true;
+
+		if (title_angle_back == true)
+			title.angle += 0.1;
+		else
+			title.angle -= 0.1;
+	}
+
+	//  Reset the players velocity (movement)
+	player.body.velocity.x = 0;
+
+	if (cursors.left.isDown)
+	{
+		player.body.velocity.x = -player_speed;
+		player.animations.play('left');
+	}
+	else if (cursors.right.isDown)
+	{
+		player.body.velocity.x = player_speed;
+		player.animations.play('right');
+	}
+	else
+	{
+		player.animations.stop();
+		player.frame = 4;
+	}
+
+	//  Allow the player to jump if they are touching the ground.
+	if (cursors.up.isDown && player.body.touching.down)
+	{
+		player.body.velocity.y = -player_jump_height;
+	}else if (cursors.down.isDown && player.body.touching.down != true && cursors.up.isDown == false){
+		player.body.velocity.y += player_gravity * 3;
+		player.animations.play('smack_down');
+	}
+}
+
+// get variables from reload
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+</script>
+
+</body>
+</html>

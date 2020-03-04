@@ -1,0 +1,219 @@
+a:link { text-decoration:underline; color:#C1B492; }
+a:visited { text-decoration:underline; color:#C1B492; }
+
+	#color_one	{ background-color: #DD0F19;}
+	#color_two	{ background-color: #098A81;}
+	#color_three{ background-color: #1DB80C;}
+	#color_four	{ background-color: #E16A0F;}
+	#bgcolor 	{ background-image: url(http://fauux.neocities.org/Test_2.gif);}
+
+.box:hover{
+	box-shadow: 0 0 5px #FFF;
+}
+
+.list
+{
+	margin-left: 50px;
+}
+
+#main{
+	margin: auto;
+	width: 50%;
+	background-color: #000;
+	box-shadow: 0px 5px 10px #000;
+}
+
+#main_headline
+{
+	width: 32px;
+	font-size: 32px;
+	color: #0f6;
+	float: left;
+	position: fixed;
+	margin-top: 10px;
+	display: block;
+}
+
+#headline
+{
+	text-align: center;
+	font-size: 32px;
+	color: #0f6;
+}
+
+hr{
+	color: #0f6;
+	width: 100%;
+}
+
+th
+{
+	color: #0f6;
+}
+
+#backbutton
+{
+	font-size: 32px;
+	color: #ffffff;
+	float: left;
+	position: fixed;
+	margin-top: 200px;
+}
+
+#backbutton2
+{
+	-moz-transform:rotate(-180deg); /* Firefox */
+	-webkit-transform:rotate(-180deg); /* Webkit */
+	-ms-transform:rotate(-180deg); /* IE */
+	-o-transform:rotate(-180deg); /* Opera */
+	transform:rotate(-180deg); /* future */
+	font-size: 32px;
+	color: #ffffff;
+	float: left;
+	position: fixed;
+	margin-top: 288px;
+}
+
+#border_line
+{
+	width: 35px;
+	height: 120%;
+	margin-top: -5%;
+	margin-left: -10px;
+	background-color: black;
+	position: fixed;
+}
+
+#border
+{
+	margin-left: 0px;
+	margin-top: -20px;
+}
+
+#text
+{
+	margin-top: -25px;
+	margin: 32px;
+	color:#C1B492;
+	font-size: 16px;
+}
+
+#tabelle
+{
+
+	margin-top: -25px;
+	margin: 32px;
+	color:#C1B492;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-spacing: 20px;
+	font-family: Nimbus Mono L ,"Linux Biolinum O", Georgia, Arial !important;
+	font-size: 18px;
+	background-color: #000;
+	box-shadow: 0px 5px 10px #000;
+}
+
+table
+{
+	margin-left: 25px;
+}
+
+p
+{
+	color: #ffffff;
+	font-family: Nimbus Mono L ,"Linux Biolinum O", Georgia, Arial !important;
+	font-size: 18px;
+}
+
+ol {list-style:none;}
+ol li span
+{
+	color: #58a;
+	display: block;
+	float: left;
+	width: 30px;
+}
+ol li
+{
+	font-size: 15px;
+	color: #C1B492;
+	clear:both;
+	width: 400px;
+
+}
+ol li p
+{
+	color: #C1B492;
+	float: left;
+	width: 370px;
+	margin: 0;
+
+}
+
+footer
+{
+	height: 500px;
+	border-top: none;
+	border-top-color: black;
+	margin-top: 10px;
+	margin-left: 32px;
+	background-color: #2E3436;
+	color: white;
+}
+
+img
+{
+	max-height: 300px;
+	max-width: 33%;
+	margin-left: 32px;
+}
+
+.quote
+{
+	font-size: 18px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.quotation
+{
+	margin-top: -32px;
+	font-size: 64px;
+	color: #58a;
+}
+.autor
+{
+	margin-top: 50px;
+	margin-left: 80%;
+}
+
+#beginning
+{
+	float: left;
+	margin-left: 32px;
+	margin-right: 10px;
+}
+
+#end
+{
+	float: right;
+	margin-right: 10px;
+}
+
+#info
+{
+	margin-left: 32px;
+}
+
+#Arisu_image
+{
+	float: right;
+	margin-top: -80px;
+	margin-left: 100px;
+}
+
+#times_opened
+{
+	display: none;
+}

@@ -1,0 +1,148 @@
+body
+{
+	background-color: #161616;
+	font-family: Courier New;
+}
+
+a:link {
+color: #363636;
+}
+a:visited {
+color: #363636;
+}
+a:hover {
+color: #363636;
+}
+a:active {
+color: #363636;
+}
+
+#menu_box
+{
+	position: fixed;
+}
+
+.menu
+{
+	background-color: #161616;
+	float: left;
+	padding: 10px 20px 10px 20px;
+	margin-left: 3px;
+	margin-top: -15px;
+	font-size: 12px;
+	transition: all 1s;
+}
+
+.menu:hover
+{
+	margin-top: 0px;
+	transition: all 1s;
+}
+
+.menu#one
+{
+	background-color: #E18728;
+}
+.menu#two
+{
+	background-color: #BE4C39;
+}
+.menu#three
+{
+	background-color: #9351A6;
+}
+
+
+#headline
+{
+	height: 50px;
+	width: 100%;
+	font-size: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: #000;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+
+.content
+{
+	background-color: #4472B9;
+	width: 90%;
+	margin: auto;
+	margin-top: 50px;
+	padding-top: 20px;
+	text-align: center;
+	overflow: hidden;
+}
+
+#inner_box{
+	width: 100%;
+	background-color: #4472B9;
+	border: none;
+	margin-left: -9px;
+	margin-top: -9px;
+}
+
+.content div
+{
+	background-color: #fff;
+	padding: 10px;
+	padding-top: 0px;
+	text-align: justify;
+	float: left;
+	width: 47%;
+	border: 1px solid #000;
+	margin: 5px;
+}
+
+p.head
+{
+	text-align: center;
+	font-style: oblique;
+	font-size: 18px;
+	background-color: #000;
+	color: #fff;
+	margin: 0px -10px 0px -10px;
+	padding: 10px;
+}
+
+
+footer
+{
+	text-align: right;
+	background-color: #4CA454;
+	margin-bottom: -16px;
+}
+
+h1, h2, h3, h4, h5, h6{ text-align: center; }
+
+#e-mail:before{content: "Email address: ";}
+
+button
+{
+	text-align: center;
+	margin: auto;
+	padding: 3px;
+	width: auto;
+	font-size: 10px;
+	color: #363636;
+	border-radius: 5px;
+}
+
+button.game
+{
+	transition: 0.5s;
+	background-color: #E18728;
+	border: none;
+	border-bottom: 2px solid #000;
+}
+
+button.game:hover
+{
+	transition: 0.5s;
+	background-color: #Bf6506;
+	border: none;
+	border-bottom: 2px solid #000;
+}

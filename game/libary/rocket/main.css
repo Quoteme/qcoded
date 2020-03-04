@@ -1,0 +1,62 @@
+body
+{
+	font-family: Courier New;
+	font-size: 18px;
+}
+
+a:link {
+color: #fff;
+}
+a:visited {
+color: #fff;
+}
+a:hover {
+color: #fff;
+}
+a:active {
+color: #fff;
+}
+
+#game_object, #buffer
+{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 800px;
+	height:600px;
+}
+
+#buffer{border-color: none;}
+#game_object{border: 6px solid #000;}
+
+.instr
+	{
+		top: 0;
+		float: left;
+		margin-left: 820px;
+		margin-top: -8px;
+		background-color: #fff;
+		color: #fff;
+		border: #000 6px solid;
+		transition: all 1s;
+		text-align: center;
+		width: 250px;
+	}
+
+.instr:hover
+	{
+		background-color: #161616;
+		transition: all 1s;
+	}
+
+#two
+{
+	margin-top: 5px;
+}
+
+h3{
+	margin: auto;
+	text-align: center;
+	color: #161616;
+	font-size: 20px;
+}

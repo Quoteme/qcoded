@@ -1,0 +1,35 @@
+#main {
+	width: 33%;
+	margin: auto;
+	background-color: #fff;
+	font-family: 'UnifrakturCook', cursive, Impact;
+	padding: 20px;
+	margin-top: 10vh;
+}
+
+#header{
+	font-size: 64px;
+	text-align: center;
+	border-bottom: 2px solid #000;
+	margin-bottom: 20px;
+}
+
+input, select{
+	float: right;
+}
+
+#preview{
+	width: 30%;
+	image-rendering:optimizeSpeed;             /* Legal fallback */
+	image-rendering:-moz-crisp-edges;          /* Firefox        */
+	image-rendering:-o-crisp-edges;            /* Opera          */
+	image-rendering:-webkit-optimize-contrast; /* Safari         */
+	image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+	image-rendering:crisp-edges;               /* CSS4 Proposed  */
+	image-rendering:pixelated;                 /* CSS4 Proposed  */
+	-ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+}
+
+#prev_box{
+	text-align: center;
+}

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Jump n runner - First Phaser Test</title>
+	<link rel="shortcut icon" type="image/png" href="icon.png"/>
+	<!--
+	<script type="text/javascript" src="http://code.createjs.com/easeljs-0.8.0.min.js"></script>
+	<script src="http://code.createjs.com/tweenjs-0.6.0.min.js"></script>
+	-->
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/fast_create.js"></script>
+
+	<script charset="utf-8">
+	function loadScript(url, callback){
+
+		var script = document.createElement("script")
+		script.type = "text/javascript";
+
+		if (script.readyState){  //IE
+			script.onreadystatechange = function(){
+				if (script.readyState == "loaded" ||
+					script.readyState == "complete"){
+					script.onreadystatechange = null;
+					callback();
+				}
+			};
+		} else {  //Others
+			script.onload = function(){
+				callback();
+			};
+		}
+		script.src = url;
+		document.getElementsByTagName("head")[0].appendChild(script);
+	}
+	</script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+			background-color: #000;
+        }
+		canvas{
+			margin: auto;
+		}
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+canvas_x = 800;
+canvas_y = 600;
+
+var game = new Phaser.Game(canvas_x, canvas_y, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+levelprompt = getUrlVars()["lp"];
+player_speed		= 200;
+player_jump_height	= 270;
+player_gravity		= 500;
+tile_size			= 32;
+use_windmill 		= false;
+use_title 			= false;
+default_bottom		= true;
+max_title_angle		= 5;
+title_angle_back 	= false
+function preload() {
+	//sprites
+		game.load.image('sky', 'assets/bg0.png');
+		game.load.image('ground', 'assets/platform.png');
+		game.load.image('ground_2', 'assets/platform_2.png');
+		game.load.image('ground_broken', 'assets/platform_broken.png');
+		game.load.image('bottom', 'assets/ground.png');
+		game.load.image('ladder', 'assets/ladder.png');
+		game.load.image('flag_red', 'assets/flag_red.png');
+		game.load.image('door', 'assets/door.png');
+		game.load.image('tree', 'assets/tree.png');
+		game.load.image('tree_spruce', 'assets/tree_2.png');
+		game.load.image('bridge', 'assets/bridge.png');
+		game.load.image('waterfall', 'assets/waterfall.png')
+		game.load.image('grass', 'assets/grass.png');
+		game.load.image('fuel', 'assets/fuel.png');
+		game.load.image('sign', 'assets/sign.png');
+		game.load.image('signr', 'assets/singr.png');
+		game.load.image('windmill', 'assets/windmill.png');
+		game.load.image('house', 'assets/house.png');
+		game.load.image('carrier', 'assets/carrier.png');
+		game.load.image('title', 'assets/title.png');
+		game.load.image('flare', 'assets/flame_particle.png');
+		game.load.image('inv_flare', 'assets/inversion_particle.png');
+		game.load.image('inv_dev', 'assets/inversion_device.png');
+		game.load.spritesheet('dude', 'assets/player.png', 20, 36);
+}
+
+function create() {
+	//create physics
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+
+	decoration			 	= game.add.group();
+	fuel				 	= game.add.group();
+	platforms 			 	= game.add.group();
+	flag_red 			 	= game.add.group();
+	inverter 			 	= game.add.group();
+	platforms.enableBody 	= true;
+	flag_red.enableBody	 	= true;
+	decoration.enableBody	= true;
+	fuel.enableBody			= true;
+	inverter.enableBody		= true;
+	define_player_location	= false;
+	use_windmill			= false;
+	use_title 				= false;
+	default_bottom			= true;
+	jetpack					= false;
+	jetpack_count			= 50;
+	jetpack_fuel			= 20;
+	jetpack_current_fuel	= 0;
+	jetpack_speed_limit		= 250;
+	jetpack_emitter			= game.add.emitter(0, 0, 200);
+		jetpack_emitter.makeParticles('flare');
+		jetpack_emitter.gravity = player_gravity * 2;
+	allow_inversion 		= true;
+	got_inverter 			= false;
+
+	//add background
+	sky = decoration.create(0, 0, 'sky');
+	sky.body.immovable = true;
+	sky.fixedToCamera = true;
+
+	if (levelprompt === undefined)
+		levelprompt = 0;
+
+	function debug() {
+		console.log('loaded level.\n');
+		console.log("use_windmill = " + use_windmill);
+		console.log("use_title = " + use_title);
+		console.log("default_bottom = " + default_bottom);
+		console.log("define_player_location = " + define_player_location)
+
+		//anchor rotating elements
+		if (use_windmill == undefined)
+			use_windmill = false;
+			if (use_windmill == true){
+				windmill.x += tile_size;
+				windmill.y += tile_size * 1.5;
+				windmill.anchor.setTo(0.5, 0.5);
+			}
+
+		if (default_bottom){
+			ground = platforms.create(0, game.world.height - tile_size, 'bottom');
+			ground.body.immovable = true;
+		}
+
+		if (define_player_location == true){
+			console.log('replace charakter');
+			player.x = player_start_x;
+			player.y = player_start_y;
+		};
+	};
+
+	loadScript("level/" + levelprompt + ".js", debug);
+	player_start_y = game.world.height - tile_size * 3;
+	player_start_x = 32;
+	player = game.add.sprite(32, game.world.height - tile_size * 3, 'dude');
+	game.physics.arcade.enable(player);
+	player.body.bounce.y = 0;
+	player.body.gravity.y = player_gravity;
+	player.body.collideWorldBounds = false;
+	//Phaser.Camera.atLimit = false;
+	game.camera.follow(player);
+
+	//  Our two animations, walking left and right.
+	player.animations.add('left', [0, 1, 2, 3], 10, true);
+	player.animations.add('right', [5, 6, 7, 8], 10, true);
+	player.animations.add('smack_down', [9], 10, true);
+
+	cursors = game.input.keyboard.createCursorKeys();
+
+	// just add this once / temp dump
+	inv_part = game.add.emitter(-100, -100, 200);
+	inv_part.makeParticles('inv_flare');
+}
+
+function update() {
+	//  checking for collision
+	game.physics.arcade.collide(player, platforms);
+	if (game.physics.arcade.collide(player, flag_red)){
+		next_level = levelprompt - 1 + 2;
+		temp_loc = location.href.replace('?lp=' + levelprompt, '');
+		location.href = temp_loc + '?lp=' + next_level;
+	}
+	if (game.physics.arcade.collide(player, fuel)){
+		jetpack = true;
+		fuel.kill();
+	}
+	if (game.physics.arcade.collide(player, inverter)){
+		got_inverter = true;
+		invertation_device.kill();
+		inv_part.on = false;
+	}
+
+	//item specivic collision detecting
+		if (player.body.collideWorldBounds == false){
+			if (player.y > game.world.height ||
+				player.x < 0 - tile_size ||
+				player.y < 0 - tile_size ||
+				player.x > game.world.width){
+				player.x = player_start_x;
+				player.y = player_start_y;
+			}
+		}
+
+	// rotate spites
+	if (use_windmill == true)
+		windmill.angle += 1;
+	if (use_title == true){
+		if (title.angle >= max_title_angle)
+			title_angle_back = false;
+		if (title.angle <= -max_title_angle)
+			title_angle_back = true;
+
+		if (title_angle_back == true)
+			title.angle += 0.1;
+		else
+			title.angle -= 0.1;
+	}
+
+	//  Reset the players velocity (movement)
+	player.body.velocity.x = 0;
+
+	if (cursors.left.isDown)
+	{
+		player.body.velocity.x = -player_speed;
+		player.animations.play('left');
+	}
+	else if (cursors.right.isDown)
+	{
+		player.body.velocity.x = player_speed;
+		player.animations.play('right');
+	}
+	else
+	{
+		player.animations.stop();
+		player.frame = 4;
+	}
+
+	//  Allow the player to jump if they are touching the ground.
+	if (cursors.up.isDown && player.body.touching.down)
+	{
+		player.body.velocity.y = -player_jump_height;
+		jetpack_count = 0;
+		jetpack_current_fuel = jetpack_fuel;
+	}else if (cursors.down.isDown && allow_inversion && got_inverter){
+		player.body.velocity.y = -player.body.velocity.y;
+		player.animations.play('smack_down');
+		allow_inversion = false;
+		inv_part.x = player.x + player.width / 2;
+		inv_part.y = player.y + player.height / 2;
+		inv_part.on = true
+	}else if (cursors.up.isDown && jetpack && jetpack_count > 50 && jetpack_current_fuel > 0){
+		if (player.body.velocity.y > -jetpack_speed_limit)
+			player.body.velocity.y -= 30;
+		jetpack_current_fuel -= 1;
+
+		jetpack_emitter.x = player.x + player.width / 2;
+		jetpack_emitter.y = player.y + player.height / 3;
+		jetpack_emitter.start(true, 200, null, Math.random()*2);
+	}else if (cursors.down.isUp && got_inverter){
+		allow_inversion = true;
+		inv_part.on = false;
+	}
+
+
+	jetpack_count += 1;
+}
+
+// get variables from reload
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+</script>
+
+</body>
+</html>

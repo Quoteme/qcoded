@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Das erste HTML5 Spiel</title>
+</head>
+<body>
+
+
+<div class="spoiler">
+	<div class="smallfont"> 
+			<input class="button" value="Show" style="margin: 0px; padding: 0px; width: 45px; font-size: 10px;" onclick="if 
+
+(this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') { 
+
+this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = '';this.innerText = ''; this.value = 'Hide'; 
+
+} else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerText = ''; 
+
+this.value = 'Show'; }" type="button">
+	</div>
+	<div class="alt2">
+		<div style="display: none;">
+		<br>
+		
+		<p><span id='x'></span> X <span id='y'></span> Y <a href="http://www.andyhoppe.com/" title="Besucherzaehler"><img src="http://c.andyhoppe.com/1376954621" style="border:none" alt="Besucherzaehler" /></a>Besucher
+(C)Luca Happel / Continue 2013
+druecke auf "start" und steuere mit den Pfeiltasten.</p>
+		</div>
+
+	</div>
+</div>
+
+<button onclick='start_loop()'>starten</button>
+
+
+<div id='game_object' style='position: relative'>
+<canvas width='800px' height='600px' id='background_canvas' style='background: gray; position: absolute; top: 0px; left: 0px;'></canvas>
+<canvas width='800px' height='600px' id='main_canvas' style='background: gray; position: absolute; top: 0px; left: 0px;' onmousemove='mouse(event)'>Leider kann dieser Browser das Spiel nicht ausfhren!</canvas>
+</div>
+<script type="text/javascript" src='game.js'></script>
+<!--<script type="text/javascript" src='gameblue.js'></script>-->
+
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+ajax	= perform ajax calls
+asl		= load another javascript asynchroniosly
+guv		= recive url Variables
+observe_option = get callback whenever options change
+tilt.js = detect if a smartphone gets tilted

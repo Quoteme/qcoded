@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Rocket</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	<body>
+		<hr width="800px" size="600px" align="left" id='buffer'>
+		<div id='game_object'>
+			<canvas width='800px' height='600px' id='background_canvas' style='background: gray; position: absolute; top: 0px; left: 0px;'></canvas>
+			<canvas width='800px' height='600px' id='main_canvas' style='position: absolute; top: 0px; left: 0px;' onmousemove='mouse("move", event)' onclick='mouse("click", event)'>This browser can not display the game</canvas>
+		</div>
+		<script type="text/javascript" src='game.js'></script>
+		<audio src="sounds/Death_Volt44.mp3" id='bg_music' loop>
+			<p>Your browser does not support the audio element </p>
+		</audio>
+		<div class='instr'>
+			<h3> Controles </h3>
+				<br>
+				'S' > Shoot
+				<br>
+				'Q' > Mine
+				<br>
+				'A' > Laser
+				<br>
+				Arrow Key > Move
+				<br>
+				<br>
+				<h3> Controles </h3>
+		</div>
+
+		<div class='instr' id='two'>
+			<h3> Music </h3>
+				<br>
+				Links to the music by Volt44
+				<br>
+				<br>
+				<a href='https://www.youtube.com/user/TheCrass1984'>Youtube</a>
+				<br>
+				<a href='https://soundcloud.com/volt44'>Soundcloud</a>
+				<br>
+				<a href='http://volt44.bandcamp.com/'>bandcamp</a>
+				<br>
+				<h3> Music </h3>
+		</div>
+
+
+		<br>
+
+
+		<!-- conroles for Android/iOS-->
+	</body>
+</html>

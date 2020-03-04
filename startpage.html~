@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>Startpage!</title>
+		<meta charset =' utf - 8 '>
+		<link rel="stylesheet" style="text/css" href="css/startpage.css"/>
+		<script type="text/javascript">
+			// place your images in this array
+			var random_images_array = ['asuka_yup.png', 'lain_misses_you.jpg' ,'mine.png', 'misha_laught.gif', 'RMS.gif', 'sad.png', 'sad_guy.gif', 'sleep.png', 'top_gun_grill.png'];
+			    
+			function getRandomImage(imgAr, path) {
+			    path = path || 'images/'; // default path here
+			    var num = Math.floor( Math.random() * imgAr.length );
+			    var img = imgAr[ num ];
+			    var imgStr = '<img src="' + path + img + '" alt = "">';
+			    document.write(imgStr); document.close();
+			}
+
+		</script>
+	</head>
+	<body id="bgcolor">
+		<main>
+			<section id="search">
+				<form method="get" class="DDG" action="https://duckduckgo.com/">
+					<input type="text" name="q" class="input" placeholder="duckduckgo" />
+				</form>
+				<form method="get" class="youtube" action="https://youtube.com/results">
+					<input type="text" name="search_query" class="input" placeholder="Youtube" />
+				</form>
+				<form method="get" class="wikipedia" action="https://en.wikipedia.org/w/index.php">
+					<input type="text" name="search" class="input" placeholder="Wikipedia (en)" />
+				</form>
+				<form method="get" class="wikipedia" action="https://de.wikipedia.org/w/index.php">
+					<input type="text" name="search" class="input" placeholder="Wikipedia (de)" />
+				</form>
+			</section>
+		</main>
+			<table border="0" rules="none" align="center" id="first_layer">
+			<tr>
+					<td id="color_one" width="200px" height="100px">
+						<h2 align="center">
+							<a href="http://www.youtube.com">YouTube</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_three" width="100px" height="100px">
+						<h2 align="center">
+							<a href="http://www.lainchan.org">lainchan</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_two" width="100px" height="100px">
+						<h2 align="center">
+							<a href="http://www.pomf.se">pomf.se</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_four" width="200px" height="100px" >
+						<h2 align="center">
+							<a href="http://www.muhnig.ga/">muhnig.ga</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_three" width="100px" height="100px" >
+						<h2 align="center">
+							<a href="http://kissanime.com/">KissAnime</a>
+						<h2>
+					</td>
+			</tr>
+			<td height="6px"></td>
+			</tr>	
+			</table>
+			<table border="0" rules="none" align="center" >
+			<tr>
+					<td id="color_two" width="200px" height="100px" >
+						<h2 align="center">
+							<a href="https://mediacru.sh/">mediacru.sh</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_four" width="100px" height="100px">
+						<h2 align="center">
+							<a href="http://127.0.0.1:7657/home">i2p</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_two" width="100px" height="100px" >
+						<h2 align="center">
+							<a href="http://www.github.com">github</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+			</tr>
+			<tr>
+
+			<td height="6px"></td>
+			</tr>	
+			</table>
+
+
+			<table border="0" rules="none" align="center" >
+			<tr>
+					<td id="color_one" width="100px" height="100px">
+						<h2 align="center">
+							<a href="http://www.4chan.org/g/">/g/</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_three" width="200px" height="100px">
+						<h2 align="center">
+							<a href="http://dotshare.it">dotshare.it</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+					<td id="color_four" width="100px" height="100px">
+						<h2 align="center">
+							<a href="http://www.nitrado.net">Nitrado</a>
+						<h2>
+					</td>
+			<td width="3px" height="0px"></td>
+				<td id="color_three" width="100px" height="100px" >
+						<h2 align="center">
+							<a href="http://www.420.moe">420.moe</a>
+						<h2>
+					</td>
+					
+			</tr>
+			<tr>
+
+			<td height="6px"></td>
+			</tr>	
+			</table>
+			<img src='' id='err_load'>
+			<br>
+			<div id='sticky'>
+				<script type="text/javascript">getRandomImage(random_images_array, 'pic/')</script>
+			</div>
+	</body>
+</html>

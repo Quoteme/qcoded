@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Qcoded</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="Open source Projekts at Qcoded.de" />
+		<meta name="keywords" content="Code" />
+		<link rel="stylesheet" style="text/css" href="css/index.css"/>
+	</head>
+	<body id='bgcolor'>
+
+		<!-- Powered by Navi badge -->
+			<div style="
+				position:fixed;
+				bottom:0px;
+				width: 500px;
+				">
+				<a draggable="false" href="http://www.tachibanalabs.net">
+					<img draggable="false" src="http://mebious.neocities.org/dis-badge.png"
+					title="Copland OS is a trademarked product of Tachibana Labs">
+				</a>
+			</div>
+
+		<div id='border_line'></div>
+		<div>
+			<a href='http://projekts.qcoded.de'>
+				<p id='backbutton'>«</p>
+			</a>
+			<a href='#'>
+				<p id='backbutton2'>↓</p>
+			</a>
+		</div>
+
+		<p id='main_headline'>A<br>r<br>i<br>s<br>u</p>
+
+		<div id='main'>
+
+			<p id='text'>
+
+			<br>
+
+			<ol>
+				<li><span>1.</span> <a href='#basic goal'> Basic goal of Arisu </a> </li>
+				<li><span>2.</span> <a href='#about arisu'>About Arisu</a>
+					<ol>
+						<li><span>2.1</span> <a href='#benefits of arisu'>Benefits of Arisu</a> </li>
+						<li><span>2.2</span> <a href='#why the name arisu'>Why the name Arisu?</a> </li>
+					</ol>
+				<li><span>3.</span> <a href='#how she works'>How she works</a></li>
+				<li><span>4.</span> <a href='#how to install'>How to: install Arisu</a>
+					<ol>
+						<li><span>4.1</span> <a href='#install a language'>How to: add a language</a></li>
+						<li><span>4.2</span> <a href='#start a brain.txt'>How to: start a new brain.txt</a></li>
+						<li><span>4.3</span> <a href='#new sentence'>How to: add new sentences</a></li>
+						<li><span>4.4</span> <a href='#special tags'>How to: Add special Tags</a></li>
+						<li><span>4.5</span> <a href='#new commands'>How to: add commands</a></li>
+					</ol>
+				</li>
+				<li><span>5.</span> <a href='#use Arisu'>How to use Arisu </a></li>
+				<li><span>6.</span> <a href='#screens'>Screenshots</a></li>
+				<li><span>7.</span> <a href='#changelog'>Changelog</a></li>
+				<li><span>8.</span> <a href='#download'>Download/Sourcecode </a></li>
+			</ol>
+			</p>
+
+			<br>
+
+			<hr width='98%' id='border'>
+
+			<div id='basic goal'>
+				<p id='headline'> 1. Basic goal of Arisu </p>
+
+				<p id='text'>
+					The goal of the Arisu Project is to build an easy to interact, but still <b>very</b> customizable <a href='https://en.wikipedia.org/wiki/AI' target='_blank'>AI</a>.
+					The whole projekt is open-source and uses the GPLv3 opensource license to give you the best control and customization for Arisu. Siri and other other proprietary software already show(ed) that artificial intelligence can help in very much ways. But you cannot customize Siri, nor any other commercial successful AI, but this can be changed! With Arisu, you get only the base of an AI that can perfectly fit your needs, if you customize it (just like Arch Linux).
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='about arisu'>
+				<p id='headline'> 2. About Arisu</p>
+
+				<p id='text'>
+					Arisu is the bare base for an AI, which can be fully customized to fit your needs. She can things other AI's cannot do and also is open-source. Read more about these benefits at '2.1 Benefits of Arisu'.
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='benefits of arisu'>
+				<p id='headline'> 2.1 Benefits of Arisu </p>
+
+				<p id='text'>
+					Since Arisu uses the GLPv3 she can customized in any way you want her to be.
+					She uses such called 'brain.txt' files, in which all the questions and answers are stored and configured. These 'brain.txt' files can be easily changed, meaning you can switch between multiple personality's, vocabulary's or even persons.Read more about changing the brain.txt at <a href=''>'How to add a language' </a>
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='why the name arisu'>
+				<p id='headline'> 2.2 Why the name Arisu </p>
+
+				<img src='images/Arisu.jpg' alt='an image of Arisu' id='Arisu_image'>
+
+				<p id='text'>
+					Arisu (Alice Mizuki 瑞城 ありす) is the name of a character in the anime: Serial Experiments Lain.
+						<br>
+					She is a (if not the only real one) friend of the main character Lain Iwakura (岩倉 玲音 Iwakura Rein) and also has some big impact on the plot of the show. For more information, read the <a href='https://en.wikipedia.org/wiki/Serial_Experiments_Lain'>wikipedia article</a>.
+				<p>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='how she works'>
+				<p id='headline'> 3. How she works </p>
+
+				<p id='text'>
+					Arisu uses a brain.txt file, which stores all the answers and the main responses to user asked questions. The file stores the information in an easy to use syntax:
+					<br>
+					-	the questions, the user asked to get an answer to are split with a ','.
+					<br>
+					-	the last question ends with a ':' and indicates the answer, Arisu will give the user.
+					<br>
+					-	then follows the answer to the questions made above and this answer is then ended with an ';'
+					<br>
+					<br>
+					here an example: Does your tummy hurt?, hurts your tummy?: No, my tummy does not hurt.;
+
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='how to install'>
+				<p id='headline'> 4. How to: install Arisu </p>
+
+				<p id='text'>
+					Linux/Mac:
+						<br>
+					1. download the main Arisu core
+					<br>
+					2. extract it
+					<br>
+					3.run the main.py
+
+					<br>
+					<br>
+
+					Windows:
+						<br>
+					1. download and install python 3.4 for windows
+					<br>
+					2. download the main arisu windows core
+					<br>
+					3. run the main-winodws.py
+					<br>
+					<br>
+
+					Android:
+						<br>
+					First of, Arisu isn't a nativ android app and needs the scripting layer for android (sl4a) as well as python for android (py4a) installed on your device to run.
+					<br>
+					1. install sl4a first, here the download link: <a href='https://code.google.com/p/android-scripting/downloads/detail?name=sl4a_r6.apk&can=2&q='>Download sl4a</a>
+					<br>
+					2. download and install py4a:
+					<a href='https://code.google.com/p/android-scripting/downloads/detail?name=PythonForAndroid_r4.apk&can=2&q='>Download py4a</a>
+					<br>
+					3. <a href='#download'>download</a> and unzip the main arisu core for android.
+					<br>
+					4. move the extracted folder to storage/sl4a/scripts/ of your phone
+					<br>
+					5. start arisu-master on your device
+					<br>
+					--Alert-- Because of some bugs in the current sl4a and py4a Arisu has no way to acces the database. This means you can only use the @demo and the @p as well as the @sound tags, but not the acctual speaking.
+					<br>
+					--Alert-- Translating takes time, so there is currently only a German version of Arisu for android.
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='install a language'>
+				<p id='headline'> 4.1 How to: add/install a language </p>
+
+				<p id='text'>
+					Arisu does not come with a language pack by default, meaning: if you try to speak with her without a language pack, you will end up getting an error or creating a new brain.txt.
+					If you do not want to start a new brain.txt and just use an already existing one, just <a href='#download'>download</a> a new brain.txt.
+
+					<br>
+					!! Alert. If you want to keep an already existing brain.txt file, back it up!
+					<br>
+
+					After you successfully downloaded a package of your choice, unpack it and drop the containing folders/brain.txt file into the 'lang' folder of your arisu folder.
+					After you installed a brain.txt with all the sub folders, you instantly create a 'fork' of the original language pack.
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='start a brain.txt'>
+				<p id='headline'> 4.2 How to: start a new brain.txt </p>
+
+				<p id='text'>
+					Starting a new brain.txt is much work, but rewarding. If you download a language pack, most of the questions and answers are already defined and are easily changed. If you start a new brain.txt file, you can start with another name than Arisu and let Arisu, or however he/she/it is called then give you custom questions/answers.
+					<br>
+					To create a new brain.txt, you must first delete/rename the existing brain.txt in the lang folder and all other folders depending on the other brain.txt in the lang folder (if there even are any). After that, just create a new text file, called 'brain' (> 'brain.txt') and open it with your editor of choice. start creating basic questions and answers with the syntax described in <a href='#how she works'>'How she works'</a>. If you think you made enough for a little conversation, start Arisu like described in <a href='#how to install'>'How to install'</a> and add tags and answers in the fly while conversation with Arisu.
+
+					Note: starting a new brain.txt with 'brain version, bversion, bver: Lang: EN-EN || forked-release: 0.0.1 alpha;' will not hurt you (change EN-EN to your language-country).
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='new sentence'>
+				<p id='headline'> 4.3 How to: add new sentences </p>
+
+				<p id='text'>
+					To add a new sentence, simply type the sentence in, and check if a dialog pops up, telling you, that the question is not indexed. To add the new sentence, tipe 'y' and press enter. Entering 'n' would cancel that, and 'w' would open a duckduckgo.com search URL.
+					<br>
+					After you entered 'y', you'll be promted with an input screen, showing you what to do. This input screen asks you to add a new 'question tag'. Just use the method showed in <a href='#how she works'>'how she works'</a>, meaning, you add every tag just by typing it in and split multiple ones with a ','. The last question tag has no ',', instead has a ':'.
+					<br>
+					Following that, insert the answer Arisu should give you. You do not need to end this sentence with a ',', ':', or ';'. Just type a '.', if you even want, but it will not affect anything.
+					<br>
+					In the end, after you did all of the above are you ready to use your new fully custom sentence.
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='special tags'>
+				<p id='headline'> 4.4 How to: add Special tags </p>
+
+				<p id='text'>
+					Special tags are a good way to let Arisu respond to you. Special tag can be placed in the normal 'brain.txt' and then executed by letting Arisu say them. A good example for special tags is @Date. @Date responses with the date of the current time. The '@' indicates that it is a special tag, all special tags are defined with a '@' at the beginning. You can use a special tag, just by writing it to a response from Arisu in the brain.txt, just like this:
+					<br>
+					brain.txt:			what is the date: The current date is @Date.
+					<br>
+					Result:				User:	|-->what is the date?
+					<br>
+										Arisu:		>The current date is 09.09.1991
+					<br>
+					Here is a short list of all the special tags:
+					<br>
+					<br>
+					<table id='tabelle'>
+					<tr>
+						<th>Tag</th>
+						<th>Meaning</th>
+					</tr>
+					<tr>
+						<td>@U</td>
+						<td>User Name (found in person_info.txt)</td>
+					</tr>
+					<tr>
+						<td>@Date</td>
+						<td>Date</td>
+					</tr>
+					<tr>
+						<td>@Brain</td>
+						<td>Shows the brain.txt</td>
+					</tr>
+					<tr>
+						<td>@Perso</td>
+						<td>Shows the person_info.txt</td>
+					</tr>
+					<tr>
+						<td>@br</td>
+						<td>breaks the line/starts a new line</td>
+					</tr>
+					<tr>
+						<td>@Clear</td>
+						<td>
+							clears the screen.
+						</td>
+					</tr>
+					<tr>
+						<td>@mkdir</td>
+						<td>
+							stops arisu from creating a new subfolder.
+							<br>
+							useful if you want to stay in the same brain.txt after an input.
+						</td>
+					</tr>
+					<tr>
+						<td>@AI</td>
+						<td>
+							is only used in the question. like: how are you @AI?: I'm fine.;
+							User input with the AI name defined in 'personal_info.txt' will be changed to @AI.
+						</td>
+					</tr>
+					<tr>
+						<td>@path</td>
+						<td>Shows the current directory in the /lang folder.
+					</tr>
+					<tr>
+						<td>@up</td>
+						<td>Changes one folder upwards. For example:
+							<blockquote>
+								> Hello
+							<br>
+								|--> You look ugly.
+							<br>
+								> that's not nice. # here is a @mkdir
+							<br>
+								|-->forget it. # we are now in a new brain.txt
+							<br>
+								> ok. # here is a @up, and we changed into the previous brain.txt
+							<br>
+								|--> You look beautiful. # and we can say something else.
+							<br>
+								> thank you. # and nothing happened
+							</blockquote>
+					</tr>
+				</table>
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='new commands'>
+				<p id='headline'> 4.5 How to: add new commands </p>
+
+				<p id='text'>
+					until now, the only way to add commands is to edit the source code. But this will hopefully change.
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='use Arisu'>
+				<p id='headline'> 5.How to use Arisu</p>
+
+				<p id='text'>
+					To use Arisu make sure you first installed her and installed a language pack or starded a new brain.
+						<br>
+							<b>-Gnu/Linux:</b>
+						<br>
+					First of, start a terminal and cd into the folder which contains the basic Arisu core. After that, start the main.py with the command 'python main.py'.
+						<br>
+							<b>-Windows:</b>
+						<br>
+					Start the main_windows.py with a double click.
+						<br>
+							<b>-Windows and Gnu/Linux</b>
+						<br>
+					The terminal should get cleaned and a few lines of text should pop up. These show your current Arisu core information. Then the welcoming message should be printed out. After that, you can start chatting. If you installed a language pack, you should get a fitting response, if you do not get one, go to the 'install a language pack' section and make sure you did everything right.
+						<br>
+					After you spoke a bit to your Arisu core, you might get presented by a text saying a sentence would be not indexed. If so, you get presented with multiple options, like adding the sentence into the brain. For that press 'y' and enter. You can now enter an answer Arisu should give you the next time you ask her the same question. Make sure you use the <a href="special tags">special tags</a> to let the answer be more dynamic. Make sure to always use @mkdir if you want to let the user answer to a comment of Arisu.
+						<br>
+
+				<p>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+
+
+			<div id='screens'>
+				<p id='headline'> 6. Screenshots </p>
+					<img src='images/windows.png' alt='Arisu shown in a terminal used under Windows' title='Arisu in an old windows XP terminal'>
+					<img src='images/linux.png' alt='Arisu shown in a terminal used under Gnu/Linux' title='Arisu running in Gnome-Terminal under Gnu/Linux'>
+					<img src='images/file_hirachy.png' alt='Arisu in a recomended file hirachy' title='Arisu in a recomended file hirachy'>
+			</div>
+
+			<br>
+			<hr width='25%' id='border'>
+
+			<div id='changelog'>
+				<p id='headline'> 7. Changelog </p>
+
+				<p id='text'>
+					New in version 0.0.4:
+						<br>
+					-letter by letter output via 'arisu_say'
+						<br>
+					-original output via 'arisu_say_fast'
+						<br>
+					-startup messages
+						<br>
+					-'Version' variable.
+				</p>
+			</div>
+
+
+			<div id='download'>
+				<p id='headline'> 8. Download/Sourcecode </p>
+
+				<p id='text'>
+					Click here to choose your download: <a href='download.html'>download</a>
+					<br>
+					<br>
+					If you are running windows, install the latest python version first, please. <a href='https://www.python.org/downloads/release/python-341/'> python 3.4.1 </a>
+				</p>
+
+				<br>
+			</div>
+
+			<br>
+			<br>
+			<hr width='25%' id='border'
+
+			<footer>
+				<span class='quotation' id='beginning'>„</span>
+					<p class='quote'>
+						Let's all love Lain.
+					</p>
+				<span class='quotation' id='end'>“</span>
+				<p class='autor'>
+				-Anon
+				</p>
+
+				<p id='info'>
+					2014 - 2015, for more questions e-mail me: contact@qcoded.de
+
+					<br><br><br>
+
+					<div id='times_opened'>
+						this website was
+							<a href="http://www.reliablecounter.com" target="_blank"><img src="http://www.reliablecounter.com/count.php?page=arisu.qcoded.de/&digit=style/plain/33/&reloads=0" alt="www.reliablecounter.com" title="www.reliablecounter.com" border="0"></a><br /><a href="http://www.analogmix.com/forum" target="_blank" style="font-family: Geneva, Arial; font-size: 9px; color: #330010; text-decoration: none;">online song mixer</a>
+						times visited;
+					</div>
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>

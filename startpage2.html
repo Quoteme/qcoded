@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>420 Tux It</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="A nice minimal homepage with a pixelated tux on it." />
+		<meta name="keywords" content="Tux, minimal, homepage, search" />
+		<link rel="stylesheet" style="text/css" href="css/tuxed.css"/>
+	</head>
+	<body>
+		<div class='main'>
+			<img src='pic/pix_tux.png' id='head'></img>
+
+			<p id='random_text'></p>
+
+			<table>
+				<tr>
+					<td><a href='https://www.youtube.com'>		Youtube<a></td>
+					<td><a href='https://www.lainchan.org'>		Lainchan</a></td>
+					<td><a href='https://www.4chan.org'>		4chan</a></td>
+					<td><a href='http://www.mebious.mobi/classic.php'>Mebious</a></td>
+				</tr>
+
+				<tr>
+					<td><a href='http://nitrado.com'>			Nitrado</a></td>
+					<td><a href='http://www.iplocation.net/'>	IPlocation</a></td>
+					<td><a href='http://github.com'>			Github</a></td>
+					<td><a href='http://fauux.neocities.org/'>	Fauux</a></td>
+				</tr>
+
+				<tr>
+					<td><a href='http://mediacru.sh'>			Mediacru.sh</a></td>
+					<td><a href='http://dotshare.it/'>			Dotshare.it</a></td>
+					<td><a href='http://420.moe'>				420.moe</a></td>
+					<td><a href='http://mebious.neocities.org/'>Layer 00</a></td>
+				</tr>
+
+				<tr>
+					<td><a href='http://tracerneo.eu.org/cyb/'>	/cyb/</a></td>
+					<td><a href='http://duckduckgo.com'>		DDG.gg</a></td>
+					<td><a href='http://kissanime.com/'>		Kissanime</a></td>
+					<td><a href=''>								empty</a></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</body>
+
+	<script charset="utf-8">
+		// Image generator
+			ImgAr = [
+				'tux.png',
+				'link.png',
+				'quote.png'
+			]
+			var num = Math.floor( Math.random() * ImgAr.length );
+			document.getElementById("head").src = 'pic/startpage2_rand/' + ImgAr[num];
+
+		// Text generator
+			TexAr = [
+				'Tux approves of these sites:',
+				'Awoooooooooooooooooooo~:',
+				'C · · · c · · · C · · ·',
+				'Healthy reminder that...',
+				'Discover the depths of the net.',
+				'Close The World, Open The Next',
+				'Daily Homepage Thread',
+				'Why you still here?',
+				'Feels good man',
+				'Feels bad man',
+				'It needs a genious to understand this simplicity',
+				'What the fuck did you just fucking say about me, you little bitch? I’ll have you know...',
+				'Hahahaha',
+				'15',
+				'>tfw no gf',
+				'operation renigger',
+				'( ͡° ͜ʖ ͡°)',
+				'Bait',
+				'Bruh...',
+				'... no homo.',
+				'why do i NEED randome text?'
+			]
+			var num = Math.floor( Math.random() * TexAr.length );
+			document.getElementById("random_text").innerHTML = TexAr[num];
+	</script>
+
+</html>

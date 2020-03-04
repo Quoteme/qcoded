@@ -1,0 +1,84 @@
+*{
+	font-family: courier;
+
+	padding: 0px;
+	margin: 0px;
+	border-style: none;
+}
+
+#title{
+	font-size: 10vh;
+	text-align: center;
+
+	border-bottom: 3px;
+	border-style: dashed;
+}
+#style_picker{
+	margin: auto;
+}
+
+#input_info{
+	font-size: 24px;
+
+	text-align: center;
+	margin-top: 30vh;
+}
+
+#input_info input, #input_info select, #input_info select option, #aiinput_info input, #aiinput_info select, #aiinput_info select option{
+	font-size: 24px;
+}
+
+#aiinput_info
+{
+	font-size: 24px;
+
+	text-align: center;
+	margin-top: 30vh;
+	display: none;
+}
+
+#options{
+	font-size: 12px;
+
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+}
+
+#options #settings{
+	margin-right: 10px;
+	display: none;
+}
+
+#options img{
+	height: 64px;
+	margin-bottom: -5px;
+}
+
+#settings_img{
+	font-size: 64px;
+	margin-right: 10px;
+}
+
+#chat{
+	padding: 30px;
+}
+
+#warning{
+	color: #d00;
+}
+
+#chat-group{
+	margin-left: 30px;
+}
+
+#input{
+	width: 33%;
+	display: none;
+}
+
+[data-icon]:before {
+	font-family: icons; /* BYO icon font, mapped smartly */
+	content: attr(data-icon);
+	speak: none; /* Not to be trusted, but hey. */
+}
